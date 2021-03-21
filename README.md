@@ -1,3 +1,1 @@
-# EltexLessons2021
-# EltexLessons2021
-# EltexLessons2021
+В /LinuxLabs находятся лабы по линуксу
