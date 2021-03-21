@@ -1,0 +1,8 @@
+# !/bin/bash
+# В файл errors.log помещает все строки из всех доступных для чтения файлов директории /var/log/, содержащие  последовательности символов syslogd, без указания имени файла, в котором встретилась строка. 
+# Затем выводит на экран те строчки из получившегося файла, которые содержат полные имена каких-либо файлов.
+startCatalog=$(pwd)
+cd /var/log/
+grep -E -h -s syslogd * > /home/vladislav/EltexLessons2021/lab2/errors.log
+cd $startCatalog
+grep -E "^.*\/([[:alnum:]]+\/)+" errors.log

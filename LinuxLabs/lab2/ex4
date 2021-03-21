@@ -1,0 +1,4 @@
+#!/bin/bash
+#Выводит на экран  полное имя файла с интерпретатором, наиболее часто используемым в сценариях в директории /bin
+reg="^#!"
+grep -s -r  -h --binary-files="without-match" $reg /bin | sort | uniq -c | sort -nr | head -1 | awk -F "!" '{printf("%s\n", $2)}'

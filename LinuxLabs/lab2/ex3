@@ -1,0 +1,4 @@
+# !/bin/bash
+# Выводит в файл emails.lst, через запятую все адреса электронной почты, встречающиеся во всех файлах директории /etc. 
+emailReg="[[:alnum:]]+@[[:alpha:]]+(\.[[:alpha:]]+)+"
+egrep -s -h -r -o  --binary-files="without-match" $emailReg /etc | awk '{ printf("%s, ", $1) }' > emails.lst

@@ -1,0 +1,4 @@
+#!/bin/bash
+# Выводит на экран количество процессов, запущенных пользователем vladislav, и выводит в файл ex1.log пары PID:команда для таких процессов
+ps -u vladislav | wc -l
+ps -u vladislav | awk '{printf("%s:%s\n", $1, $4)}' > ex1.log

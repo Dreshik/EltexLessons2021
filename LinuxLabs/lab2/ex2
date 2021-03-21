@@ -1,0 +1,8 @@
+# !/bin/bash
+#Создаётся файл full.log, в который вводятся все  строки файла //var/log/syslog, содержащие предупреждения и информационные сообщения, заменяются маркеры предупреждений и информационных сообщений на слова Warning: и Information:, в получившемся файле сначала идут все информационные сообщения, а потом все предупреждения. Затем этот файл на экран выводится.
+cat /var/log/syslog
+inf="\\(II\\)"
+war="\\(WW\\)"
+grep -E -h -s $war /var/log/syslog | sed -E "s/$war/Warning: /" > full.log
+grep -E -h -s $inf /var/log/syslog | sed -E "s/$inf/Information: /" >> full.log
+cat full.log
