@@ -1,0 +1,28 @@
+#!/bin/bash
+previousPpid=-1 
+countDev=0
+sum=0
+strNum=0
+rm ex6.tmp
+rm ex56.log
+while read line
+do
+	ppid=$(echo $line | cut -d ":" -f 2 | grep -E -s -o "[0-9]+")
+	avg_at=$(echo $line | cut -d ":" -f 3| grep -E -s -o "[0-9]+")
+	
+	if [[ ppid -ne previousPpid && previousPpid -ne -1 ]]
+	then
+		echo "Average_Sleeping_Children_of_ParentID=$previousPpid is  $(echo "scale=2; $sum / $countDev" | bc -l)" >> ex6.tmp
+		countDev=0
+        	sum=0      	
+	fi
+	echo $line >> ex6.tmp
+	sum=$(echo "scale=2; $sum + $avg_at" | bc -l)
+    	previousPpid=$ppid
+    	((countDev++))
+    	((strNum++))
+    	echo $strNum
+done < ex5.log
+echo "Average_Sleeping_Children_of_ParentID=$previousPpid is  $(echo "scale=2; $sum / $countDev" | bc -l)" >> ex6.tmp
+cp ex6.tmp ex56.log
+rm ex6.tmp
