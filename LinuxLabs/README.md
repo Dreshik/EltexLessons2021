@@ -56,5 +56,3 @@ vi) В полученном на предыдущем шаге файле пос
 Average_Sleeping_Children_of_ParentID=N is M,
 где N = PPID, а M – среднее, посчитанное из SleepAVG для данного
 процесса.
-
-
