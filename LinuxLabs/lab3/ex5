@@ -1,1 +1,18 @@
 #!/bin/bash
+#Для всех зарегистрированных в данный момент в системе процессов выведит в один файл строки  ProcessID=PID : Parent_ProcessID=PPID : Average_Time=avg_atom. Строки отсортированны по идентификаторам родительских.
+rm ex5.log
+for p in $(ps -A -o pid | tail -n +2)
+do
+	ppid=$(grep -E -s -h "PPid" "/proc/"$p"/status"| grep -E -s -o "[0-9.]+") 
+	avg_at=$(grep -E -s -h "se.avg.runnable_avg" "/proc/"$p"/sched" | grep -E -s -o "[0-9]+")
+	#cat /proc/"$p"/sched
+	if [[ -z $avg_at ]]
+	then 
+		avg_at=0
+	fi
+	if [[ !(-z $ppid) ]]
+	then
+		echo "ProcessID=$p : Parent_ProcessID=$ppid : Average_Time=$avg_at"
+	fi
+
+done | sort -n -t "=" -k3 > ex5.log
