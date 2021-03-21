@@ -1,5 +1,5 @@
 #!/bin/bash
-#Для всех зарегистрированных в данный момент в системе процессов выведит в один файл строки  ProcessID=PID : Parent_ProcessID=PPID : Average_Time=avg_atom. Строки отсортированны по идентификаторам родительских.
+#Для всех зарегистрированных в данный момент в системе процессов выведит в один файл строки  ProcessID=PID : Parent_ProcessID=PPID : Average_Time=avg_atom ( используется se.avg.runnable_avg). Строки отсортированны по идентификаторам родительских.
 rm ex5.log
 for p in $(ps -A -o pid | tail -n +2)
 do
