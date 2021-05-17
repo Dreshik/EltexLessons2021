@@ -1,0 +1,4 @@
+sudo insmod mode_name.ko
+sudo rmmod mode_name.ko
+sudo dmesg
+lsmod
